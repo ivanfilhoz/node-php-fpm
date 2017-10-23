@@ -23,9 +23,10 @@ module.exports = function (param = {}) {
         method: 'GET',
         contentType: 'text/html'
       }
-      if (typeof param === 'string') {
-        const script = param.indexOf('/') !== -1
-          ? param
+      if (typeof param === 'object') {
+        Object.assign(params, param)
+      } else if (typeof param === 'string') {
+        const script = path.isAbsolute(param) ? param
           : path.join(options.documentRoot, param)
         params.script = script
         params.uri = script.match(/\/[^/]+$/)[0]
@@ -63,7 +64,9 @@ module.exports = function (param = {}) {
 
           request.stdout.on('end', function () {
             output = output.replace(/^[\s\S]*?\r\n\r\n/, '')
-            if (errors) { reject(errors) } else { resolve(output) }
+            if (errors) {
+              reject(Error({ errors, headers }))
+            } else { resolve(output) }
           })
 
           if (params.method in ['POST', 'PUT', 'PATCH']) {
