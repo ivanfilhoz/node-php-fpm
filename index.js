@@ -47,6 +47,10 @@ module.exports = function (param = {}) {
         REDIRECT_STATUS: 200
       }, params.headers || {})
 
+      if (params.debug) {
+        console.log(headers)
+      }
+
       const php = await fpm
       return new Promise(function (resolve, reject) {
         php.request(headers, function (err, request) {
@@ -65,7 +69,7 @@ module.exports = function (param = {}) {
           request.stdout.on('end', function () {
             output = output.replace(/^[\s\S]*?\r\n\r\n/, '')
             if (errors) {
-              reject(Error({ errors, headers }))
+              reject(new Error(errors))
             } else { resolve(output) }
           })
 
