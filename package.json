@@ -1,6 +1,6 @@
 {
   "name": "php-fpm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple php-fpm binding for Node with Promises/A+ support.",
   "main": "index.js",
   "scripts": {

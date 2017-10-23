@@ -67,7 +67,7 @@ module.exports = function (param = {}) {
           })
 
           if (params.method in ['POST', 'PUT', 'PATCH']) {
-            request.stdin.write(output, 'utf8')
+            request.stdin.write(params.body, 'utf8')
           }
         })
       })
