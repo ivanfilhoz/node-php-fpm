@@ -1,0 +1,36 @@
+{
+  "name": "php-fpm",
+  "version": "1.0.0",
+  "description": "Simple php-fpm binding for Node with Promises/A+ support.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanslf/node-php-fpm.git"
+  },
+  "keywords": [
+    "php",
+    "fpm",
+    "phpfpm",
+    "php-fpm",
+    "apache",
+    "nginx",
+    "php7"
+  ],
+  "author": "Ivan Filho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivanslf/node-php-fpm/issues"
+  },
+  "homepage": "https://github.com/ivanslf/node-php-fpm#readme",
+  "dependencies": {
+    "fastcgi-client": "0.0.1"
+  },
+  "devDependencies": {
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3",
+    "tap": "^10.7.2"
+  }
+}
