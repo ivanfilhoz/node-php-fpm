@@ -19,17 +19,20 @@ module.exports = function (param = {}) {
     request: async function (param = {}) {
       let params = {
         script: path.join(options.documentRoot, 'index.php'),
-        uri: '/',
         method: 'GET',
         contentType: 'text/html'
       }
       if (typeof param === 'object') {
         Object.assign(params, param)
       } else if (typeof param === 'string') {
-        const script = path.isAbsolute(param) ? param
-          : path.join(options.documentRoot, param)
-        params.script = script
-        params.uri = script.match(/\/[^/]+$/)[0]
+        params.script = param
+      }
+
+      if (!path.isAbsolute(params.script)) {
+        params.script = path.join(options.documentRoot, params.script)
+      }
+      if (!params.uri) {
+        params.uri = params.script.match(/\/[^/]+$/)[0]
       }
 
       const headers = Object.assign({
@@ -38,7 +41,7 @@ module.exports = function (param = {}) {
         SCRIPT_FILENAME: params.script,
         SCRIPT_NAME: params.script.split('/').pop(),
         REQUEST_URI: params.uri,
-        DOCUMENT_URI: params.script,
+        DOCUMENT_URI: params.uri,
         DOCUMENT_ROOT: options.documentRoot,
         HTTP_HOST: params.host,
         SERVER_PROTOCOL: 'HTTP/1.1',
