@@ -55,6 +55,9 @@ module.exports = function (userOptions = {}) {
 
     const headers = {
       REQUEST_METHOD: req.method,
+      CONTENT_TYPE: req.headers.contentType,
+      CONTENT_LENGTH: req.headers.contentLength,
+      CONTENT_DISPOSITION: req.headers.contentDisposition,
       DOCUMENT_ROOT: options.documentRoot,
       SCRIPT_FILENAME: params.script,
       SCRIPT_NAME: params.script.split('/').pop(),
