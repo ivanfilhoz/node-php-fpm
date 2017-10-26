@@ -55,21 +55,22 @@ module.exports = function (userOptions = {}) {
 
     const headers = {
       REQUEST_METHOD: req.method,
-      CONTENT_TYPE: req.headers.contentType,
-      CONTENT_LENGTH: req.headers.contentLength,
-      CONTENT_DISPOSITION: req.headers.contentDisposition,
+      CONTENT_TYPE: req.headers['content-type'],
+      CONTENT_LENGTH: req.headers['content-length'],
+      CONTENT_DISPOSITION: req.headers['content-disposition'],
       DOCUMENT_ROOT: options.documentRoot,
       SCRIPT_FILENAME: params.script,
       SCRIPT_NAME: params.script.split('/').pop(),
       REQUEST_URI: params.outerUri || params.uri,
       DOCUMENT_URI: params.document || params.uri,
       QUERY_STRING: params.query,
-      HTTP_HOST: req.headers.host,
       REQUEST_SCHEME: req.protocol,
       HTTPS: req.protocol === 'https' ? 'on' : undefined,
       REMOTE_ADDR: req.connection.remoteAddress,
       REMOTE_PORT: req.connection.remotePort,
       SERVER_NAME: req.connection.domain,
+      HTTP_HOST: req.headers.host,
+      HTTP_COOKIE: req.headers.cookie,
       SERVER_PROTOCOL: 'HTTP/1.1',
       GATEWAY_INTERFACE: 'CGI/1.1',
       SERVER_SOFTWARE: 'php-fpm for Node',
@@ -91,9 +92,7 @@ module.exports = function (userOptions = {}) {
         var output = ''
         var errors = ''
 
-        if (params.method in ['POST', 'PUT', 'PATCH']) {
-          request.stdin.write(params.body, 'utf8')
-        }
+        req.pipe(request.stdin)
 
         request.stdout.on('data', function (data) {
           output += data.toString('utf8')
