@@ -1,6 +1,6 @@
 {
   "name": "php-fpm",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Simple, middleware-style PHP binding",
   "main": "index.js",
   "scripts": {

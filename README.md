@@ -22,7 +22,7 @@ const http = require('http')
 const phpFpm = require('php-fpm')
 const serveStatic = require('serve-static')
 
-const php = phpFpm() // Optional: parameters can be given for fastcgi-client
+const php = phpFpm() // Optional: parameters for fastcgi-client
 const serve = serveStatic(__dirname)
 
 const server = http.createServer(function (req, res) {
