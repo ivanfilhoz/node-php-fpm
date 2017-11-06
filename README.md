@@ -1,5 +1,8 @@
 # node-php-fpm
-Simple, middleware-style PHP binding for Node.
+
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+
 
 ## Install
 
@@ -47,4 +50,10 @@ Parameters for `fastcgi-client` are available [here](https://github.com/LastLeaf
 ```
 
 ## License
-MIT
+
+[MIT](LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/php-fpm.svg
+[npm-url]: https://npmjs.org/package/php-fpm
+[downloads-image]: https://img.shields.io/npm/dm/php-fpm.svg
+[downloads-url]: https://npmjs.org/package/php-fpm
