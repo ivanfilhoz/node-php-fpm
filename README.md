@@ -26,7 +26,7 @@ const php = phpFpm() // Optional: parameters can be given for fastcgi-client
 const serve = serveStatic(__dirname)
 
 const server = http.createServer(function (req, res) {
-  if (req.url.match(/\.php(\?.*)?$/) {
+  if (req.url.match(/\.php(\?.*)?$/)) {
     php(req, res)
   } else {
     serve(req, res)
