@@ -25,7 +25,7 @@ const serveStatic = require('serve-static')
 const php = phpFpm() // Optional: parameters can be given for fastcgi-client
 const serve = serveStatic(__dirname)
 
-const httpServer = http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
   if (req.url.match(/\.php(\?.*)?$/) {
     php(req, res)
   } else {
@@ -33,7 +33,7 @@ const httpServer = http.createServer(function (req, res) {
   }
 })
 
-httpServer.listen(8080)
+server.listen(8080)
 ```
 
 ## API
