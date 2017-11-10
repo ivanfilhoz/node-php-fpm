@@ -1,6 +1,6 @@
 {
   "name": "php-fpm",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Simple, middleware-style PHP binding",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/ivanslf/node-php-fpm#readme",
   "dependencies": {
-    "camel-case": "^3.0.0",
     "fastcgi-client": "0.0.1"
   },
   "devDependencies": {

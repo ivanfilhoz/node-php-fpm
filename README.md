@@ -49,6 +49,24 @@ Parameters for `fastcgi-client` are available [here](https://github.com/LastLeaf
 }
 ```
 
+## `rewrite` option
+
+There is an implementation of the `rewrite` module to handle routes the traditional nginx/Apache way.
+
+```js
+const phpFpm = require('php-fpm')
+
+// Rewrites route for Phalcon
+const php = phpFpm({
+  rewrite: [
+    {
+      rule: /.*/, // Default rule, can be omitted
+      replace: '/index.php?_url=$0'
+    }
+  ]
+})
+```
+
 ## License
 
 [MIT](LICENSE)
