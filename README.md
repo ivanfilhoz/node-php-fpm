@@ -17,7 +17,6 @@ $ npm install php-fpm
 ## Example
 
 ```js
-const path = require('path')
 const http = require('http')
 const phpFpm = require('php-fpm')
 const serveStatic = require('serve-static')
