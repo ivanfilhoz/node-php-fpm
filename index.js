@@ -3,7 +3,7 @@ const fastCgi = require('fastcgi-client')
 const defaultOptions = {
   host: '127.0.0.1',
   port: 9000,
-  documentRoot: path.dirname(require.main.filename),
+  documentRoot: path.dirname(require.main.filename || '.'),
   skipCheckServer: true
 }
 
