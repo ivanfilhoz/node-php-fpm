@@ -1,7 +1,7 @@
 # node-php-fpm
 
 [![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
+[![NPM Downloads][downloads-image]][npm-url]
 
 
 ## Install
@@ -14,7 +14,9 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 $ npm install php-fpm
 ```
 
-## Example
+## Examples
+
+### Using with `http`
 
 ```js
 const http = require('http')
@@ -33,6 +35,19 @@ const server = http.createServer(function (req, res) {
 })
 
 server.listen(8080)
+```
+
+### Using with `express`
+
+```js
+const express = require('express')
+const phpFpm = require('php-fpm')
+
+const app = express()
+
+app.use(phpFpm())
+
+app.listen(8080)
 ```
 
 ## API
@@ -71,6 +86,5 @@ const php = phpFpm({
 [MIT](LICENSE)
 
 [npm-image]: https://img.shields.io/npm/v/php-fpm.svg
-[npm-url]: https://npmjs.org/package/php-fpm
 [downloads-image]: https://img.shields.io/npm/dm/php-fpm.svg
-[downloads-url]: https://npmjs.org/package/php-fpm
+[npm-url]: https://npmjs.org/package/php-fpm
