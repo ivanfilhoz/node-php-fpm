@@ -7,7 +7,7 @@ const defaultOptions = {
   skipCheckServer: true
 }
 
-module.exports = function (userOptions = {}) {
+module.exports = function (userOptions = {}, customParams = {}) {
   const options = Object.assign({}, defaultOptions, userOptions)
   const fpm = new Promise((resolve, reject) => {
     const loader = fastCgi(options)
@@ -16,9 +16,9 @@ module.exports = function (userOptions = {}) {
   })
 
   return async function (req, res) {
-    let params = {
+    let params = Object.assign({}, customParams, {
       uri: req.url
-    }
+    })
 
     if (!params.uri || !params.uri.startsWith('/')) {
       throw new Error('invalid uri')
