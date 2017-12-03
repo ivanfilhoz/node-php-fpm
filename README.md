@@ -52,16 +52,28 @@ app.listen(8080)
 
 ## API
 
-Parameters for `fastcgi-client` are available [here](https://github.com/LastLeaf/node-fastcgi-client#api). The default parameters set by `php-fpm` are:
+The available parameters for `php-fpm` are:
 
 ```js
-{
-  host: '127.0.0.1',
-  port: 9000,
-  documentRoot: __dirname,
-  skipCheckServer: true
-}
+phpFpm(
+  userOptions = {
+    // Parameters for fastcgi-client
+    host: '127.0.0.1',
+    port: 9000,
+    documentRoot: __dirname,
+    skipCheckServer: true
+  },
+  customParams = {
+    // Headers for php-fpm (automatically set)
+    uri, // REQUEST_URI
+    document, // DOCUMENT_URI
+    query, // QUERY_STRING
+    script // SCRIPT_FILENAME
+  }
+)
 ```
+
+Parameters for `fastcgi-client` are available [here](https://github.com/LastLeaf/node-fastcgi-client#api).
 
 ## `rewrite` option
 
@@ -70,7 +82,7 @@ There is an implementation of the `rewrite` module to handle routes the traditio
 ```js
 const phpFpm = require('php-fpm')
 
-// Rewrites route for Phalcon
+// Route rewrite for Phalcon framework
 const php = phpFpm({
   rewrite: [
     {
