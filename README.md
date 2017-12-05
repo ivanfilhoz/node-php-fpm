@@ -1,8 +1,8 @@
 # node-php-fpm
 
 [![NPM Version][npm-image]][npm-url]
+[![Github License][license-image]](LICENSE)
 [![NPM Downloads][downloads-image]][npm-url]
-
 
 ## Install
 
@@ -98,5 +98,6 @@ const php = phpFpm({
 [MIT](LICENSE)
 
 [npm-image]: https://img.shields.io/npm/v/php-fpm.svg
+[license-image]: https://img.shields.io/github/license/ivanslf/node-php-fpm.svg
 [downloads-image]: https://img.shields.io/npm/dm/php-fpm.svg
 [npm-url]: https://npmjs.org/package/php-fpm
