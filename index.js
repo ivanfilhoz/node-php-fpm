@@ -69,8 +69,6 @@ module.exports = function (userOptions = {}, customParams = {}) {
       REMOTE_ADDR: req.connection.remoteAddress,
       REMOTE_PORT: req.connection.remotePort,
       SERVER_NAME: req.connection.domain,
-      HTTP_HOST: req.headers.host,
-      HTTP_COOKIE: req.headers.cookie,
       SERVER_PROTOCOL: 'HTTP/1.1',
       GATEWAY_INTERFACE: 'CGI/1.1',
       SERVER_SOFTWARE: 'php-fpm for Node',
@@ -80,6 +78,10 @@ module.exports = function (userOptions = {}, customParams = {}) {
     for (const header in headers) {
       if (typeof headers[header] === 'undefined') { delete headers[header] }
     }
+
+    for (header in req.headers) {                                                      
+      headers['HTTP_' + header.toUpperCase().replace(/-/g, '_')] = req.headers[header];
+    }                                                           
 
     if (options.debug) {
       console.log(headers)
