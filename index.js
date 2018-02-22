@@ -50,7 +50,7 @@ module.exports = function (userOptions = {}, customParams = {}) {
     }
 
     if (!params.script) {
-      params.script = path.join(options.documentRoot, params.document || params.uri)
+      params.script = path.posix.join(options.documentRoot, params.document || params.uri)
     }
 
     const headers = {
