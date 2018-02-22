@@ -88,7 +88,7 @@ module.exports = function (userOptions = {}, customParams = {}) {
     const php = await fpm
     return new Promise(function (resolve, reject) {
       php.request(headers, function (err, request) {
-        if (err) { reject(err) }
+        if (err) { return reject(err) }
         var output = ''
         var errors = ''
 
@@ -103,7 +103,7 @@ module.exports = function (userOptions = {}, customParams = {}) {
         })
 
         request.stdout.on('end', function () {
-          if (errors) { reject(new Error(errors)) }
+          if (errors) { return reject(new Error(errors)) }
 
           const head = output.match(/^[\s\S]*?\r\n\r\n/)[0]
           const parseHead = head.split('\r\n').filter(_ => _)
