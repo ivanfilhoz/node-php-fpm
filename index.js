@@ -109,22 +109,25 @@ module.exports = function (userOptions = {}, customParams = {}) {
 
           const head = output.match(/^[\s\S]*?\r\n\r\n/)[0]
           const parseHead = head.split('\r\n').filter(_ => _)
+          const responseHeaders = {}
           let statusCode = 200
           let statusMessage = ''
-          const responseHeaders = {}
+          
           for (const item of parseHead) {
             const pair = item.split(': ')
+            
+            if (pair.length > 1 && pair[0] && pair[1]) {
+              if (pair[0] in responseHeaders) {
+                responseHeaders[pair[0]].push(pair[1])
+              } else {
+                responseHeaders[pair[0]] = [ pair[1] ]
+              }
 
-            if (pair[0] in responseHeaders) {
-              responseHeaders[pair[0]].push(pair[1])
-            } else {
-              responseHeaders[pair[0]] = [ pair[1] ]
-            }
-
-            if (pair[0] === 'Status') {
-              const match = pair[1].match(/(\d+) (.*)/)
-              statusCode = parseInt(match[1])
-              statusMessage = match[2]
+              if (pair[0] === 'Status') {
+                const match = pair[1].match(/(\d+) (.*)/)
+                statusCode = parseInt(match[1])
+                statusMessage = match[2]
+              }
             }
           }
 
