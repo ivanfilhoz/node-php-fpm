@@ -111,9 +111,11 @@ module.exports = function (userOptions = {}, customParams = {}) {
           const parseHead = head.split('\r\n').filter(_ => _)
           for (const item of parseHead) {
             const pair = item.split(': ')
-            res.setHeader(pair[0], pair[1])
-            if (pair[0] === 'Status') {
-              res.statusCode = parseInt(pair[1].match(/\d+/)[0])
+            if (pair.length > 1 && pair[0] && pair[1]) {
+              res.setHeader(pair[0], pair[1])
+              if (pair[0] === 'Status') {
+                res.statusCode = parseInt(pair[1].match(/\d+/)[0])
+              }
             }
           }
           const body = output.slice(head.length)
