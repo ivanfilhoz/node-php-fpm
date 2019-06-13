@@ -79,7 +79,7 @@ module.exports = function (userOptions = {}, customParams = {}) {
       if (typeof headers[header] === 'undefined') { delete headers[header] }
     }
 
-    for (header in req.headers) {                                                      
+    for (const header in req.headers) {                                                      
       headers['HTTP_' + header.toUpperCase().replace(/-/g, '_')] = req.headers[header];
     }                                                           
 
